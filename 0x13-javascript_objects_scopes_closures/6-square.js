@@ -1,30 +1,23 @@
 #!/usr/bin/node
-const Rectangle = require('./4-rectangle');
-class Square extends Rectangle {
-  constructor (h) {
-    super(h, h);
+/**
+ * Square class that inherits from previous square class
+ */
+const PrevSquare = require('./5-square');
+
+class Square extends PrevSquare {
+  charPrint (c) {
+    const myChar = c === undefined ? 'X' : c;
+    for (let i = 0; i < this.height; i++) {
+      let myVar = '';
+      let y = 0;
+      while (y < this.width) {
+        myVar += myChar;
+        y++;
+      }
+
+      console.log(myVar);
+    }
   }
-
-  charPrint (char) {
-    if (char === undefined) {
-      super.print();
-    } else {
-      let i = 0;
-    let j = 0;
-    let wide = '';
-    while (i < this.width) {
-      wide += 'C';
-      i++;
-    }
-
-    while (j < this.height) {
-      console.log(wide);
-      j++;
-    }
-    }
-
-  }
-
 }
 
 module.exports = Square;

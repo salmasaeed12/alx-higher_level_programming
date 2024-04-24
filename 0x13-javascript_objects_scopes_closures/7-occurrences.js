@@ -1,13 +1,11 @@
 #!/usr/bin/node
 
 exports.nbOccurences = function (list, searchElement) {
-    let i = 0;
-    let count = 0;
-    while (list[i] !== undefined) {
-      if (list[i] === searchElement) {
-        count++;
-      }
-      i++;
-    }
-    return count;
-  };
+  let count = 0;
+
+  for (let i = 0; i < list.length; i++) {
+    count = (list[i] === searchElement ? count + 1 : count);
+  }
+
+  return count;
+};
