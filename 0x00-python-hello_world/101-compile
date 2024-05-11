@@ -6,14 +6,25 @@ if [ -z "$PYFILE" ]; then
     exit 1
 fi
 
+# Check if python3 is available
+if ! command -v python3 &> /dev/null; then
+    echo "Error: python3 is not installed."
+    exit 1
+fi
+
+# Check if py_compile module is available
+if ! python3 -c "import py_compile" &> /dev/null; then
+    echo "Error: py_compile module is not installed."
+    exit 1
+fi
+
 # Compile the Python script
 python3 -m py_compile "$PYFILE"
 
 # Check if the compilation was successful
 if [ $? -eq 0 ]; then
     echo "Compiling $PYFILE ..."
-    mv "${PYFILE}c" "${PYFILE%.*}.pyc"
+    mv "${PYFILE}c" "${PYFILE%.*}c.pyc"
 else
     echo "Compilation failed."
 fi
-
